@@ -156,7 +156,7 @@ coeffecients = pd.DataFrame(lm.coef_,X.columns)
 coeffecients.columns = ['Coeffecient']
 coeffecients
 ```
-<img src= "https://user-images.githubusercontent.com/66487971/87252168-a9f95c80-c479-11ea-8ab4-81cbec7cf8f5.png" width = 150>
+<img src= "https://user-images.githubusercontent.com/66487971/87252168-a9f95c80-c479-11ea-8ab4-81cbec7cf8f5.png" width = 450>
 
 Interpreting the coefficients:
 - Holding all other features fixed, a 1 unit increase in Avg. Session Length is associated with an increase of 25.98 total dollars spent.
