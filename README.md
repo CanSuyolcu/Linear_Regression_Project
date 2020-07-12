@@ -109,7 +109,7 @@ X = customers[['Avg. Session Length', 'Time on App','Time on Website', 'Length o
   print('Coefficients: \n', lm.coef_)
   ```
   
-  <img src= "https://user-images.githubusercontent.com/66487971/87251820-2f2f4200-c477-11ea-9b8c-946ac78df08d.png" width = 200>
+  <img src= "https://user-images.githubusercontent.com/66487971/87251820-2f2f4200-c477-11ea-9b8c-946ac78df08d.png" width = 450>
   
   Now that I have fit my model, now I evaluate its performance by predicting off the test values.
   
