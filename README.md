@@ -63,7 +63,83 @@ I explore these types of relationships across the entire data set using pairplot
 ```python
 sns.pairplot(customers)
 ```
-<img src= "https://user-images.githubusercontent.com/66487971/87251608-8207fa00-c475-11ea-9eb1-dc687bb975fe.png" width = 800>
+<img src= "https://user-images.githubusercontent.com/66487971/87251608-8207fa00-c475-11ea-9eb1-dc687bb975fe.png" width = 900>
+
+Based off this plot Length of Membership  looks to be the most correlated feature with Yearly Amount Spent.
+I create a linear model plot (using seaborn's lmplot) of Yearly Amount Spent vs. Length of Membership.
+
+```python
+sns.lmplot(x='Length of Membership',y='Yearly Amount Spent',data=customers)
+```
+
+<img src= "https://user-images.githubusercontent.com/66487971/87251663-fe024200-c475-11ea-9d56-13a31425b55b.png" width = 500>
+
+## Training and Testing Data
+
+Now I split the data into training and testing sets. I set a variable X equal to the numerical features of the customers and a variable y equal to the "Yearly Amount Spent" column.
+
+```python
+y = customers['Yearly Amount Spent']
+X = customers[['Avg. Session Length', 'Time on App','Time on Website', 'Length of Membership']]
+```
+
+ Splitting the data into training and testing sets.
+ 
+ ```python
+ from sklearn.model_selection import train_test_split
+ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=101)
+ 
+ ```
+ 
+ ## Training the Model
+ 
+  Now I train my model on the training data.
+  
+  ```python
+  
+  from sklearn.linear_model import LinearRegression
+  lm = LinearRegression()
+  lm.fit(X_train,y_train)
+  
+  ```
+  
+  I print out the coefficients of the model.
+  
+  ```python
+  print('Coefficients: \n', lm.coef_)
+  ```
+  
+  <img src= "https://user-images.githubusercontent.com/66487971/87251820-2f2f4200-c477-11ea-9b8c-946ac78df08d.png" width = 200>
+  
+  Now that I have fit my model, now I evaluate its performance by predicting off the test values.
+  
+  ```python
+  predictions = lm.predict( X_test)
+  plt.scatter(y_test,predictions)
+plt.xlabel('Y Test')
+plt.ylabel('Predicted Y')
+
+```
+
+<img src= "https://user-images.githubusercontent.com/66487971/87251865-7289b080-c477-11ea-84fe-df3f65b9fed4.png" width = 500>
+
+My model did quite well!
+
+## Evaluating the Model
+
+Now I evaluate my model performance by calculating the residual sum of squares and the explained variance score (R^2).
+
+```python
+from sklearn import metrics
+
+print('MAE:', metrics.mean_absolute_error(y_test, predictions))
+print('MSE:', metrics.mean_squared_error(y_test, predictions))
+print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, predictions)))
+```
+
+
+  
+
 
 
 
