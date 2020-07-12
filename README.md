@@ -1,5 +1,5 @@
 # Linear_Regression_Project
-Linear regression project in order to decide whether to focus their efforts on a mobile app experience or a website for a company.
+Linear regression project in order to decide for a company whether to focus their efforts on a mobile app experience or a website.
 ## Imports
 
 ```python
@@ -127,7 +127,7 @@ My model did quite well!
 
 ## Evaluating the Model
 
-Now I evaluate my model performance by calculating the residual sum of squares and the explained variance score (R^2).
+Now I evaluate my model performance by calculating the residual sum of squares.
 
 ```python
 from sklearn import metrics
@@ -136,6 +136,44 @@ print('MAE:', metrics.mean_absolute_error(y_test, predictions))
 print('MSE:', metrics.mean_squared_error(y_test, predictions))
 print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, predictions)))
 ```
+<img src= "https://user-images.githubusercontent.com/66487971/87252012-8681e200-c478-11ea-8a92-7565c3bb91e1.png" width = 200>
+
+## Residuals
+
+I plot a histogram of the residuals and make sure it looks normally distributed.
+
+```python
+sns.distplot((y_test-predictions),bins=50);
+```
+<img src= "https://user-images.githubusercontent.com/66487971/87252059-eed0c380-c478-11ea-927a-aeb0d9baaa41.png" width = 350>
+
+## Conclusion
+
+I interpret the coefficients at all to get an idea to decide if the company should focus their efforts on mobile app or website development.
+
+```python
+coeffecients = pd.DataFrame(lm.coef_,X.columns)
+coeffecients.columns = ['Coeffecient']
+coeffecients
+```
+<img src= "https://user-images.githubusercontent.com/66487971/87252168-a9f95c80-c479-11ea-8ab4-81cbec7cf8f5.png" width = 150>
+
+Interpreting the coefficients:
+- Holding all other features fixed, a 1 unit increase in Avg. Session Length is associated with an increase of 25.98 total dollars spent.
+- Holding all other features fixed, a 1 unit increase in Time on App is associated with an increase of 38.59 total dollars spent.
+- Holding all other features fixed, a 1 unit increase in Time on Website is associated with an increase of 0.19 total dollars spent.
+- Holding all other features fixed, a 1 unit increase in Length of Membership is associated with an increase of 61.27 total dollars spent.
+
+This can be both interpered as : Develop the Website to catch up to the performance of the mobile app, or develop the app more since that is what is working better. 
+
+## This concludes my project here. Thanks for reading all the way through.
+
+
+
+
+
+
+
 
 
   
